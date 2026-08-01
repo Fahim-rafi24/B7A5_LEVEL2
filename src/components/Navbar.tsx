@@ -72,20 +72,8 @@ export default function Navbar() {
                     </div>
 
                     <div className="flex items-center gap-3">
-                        <div className="hidden lg:flex items-center gap-1 bg-slate-100 p-1 rounded-full border border-slate-200">
-                            {(['tenant', 'landlord', 'admin'] as UserRole[]).map((role) => (
-                                <button
-                                    key={role}
-                                    onClick={() => handleRoleNav(role)}
-                                    className={`px-3 py-1 rounded-full text-xs font-semibold capitalize transition ${activeRole === role
-                                        ? 'bg-blue-600 text-white shadow-sm'
-                                        : 'text-slate-600 hover:text-blue-600'
-                                        }`}
-                                >
-                                    {role}
-                                </button>
-                            ))}
-                        </div>
+
+
 
                         {!isLoading && !user && (
                             <button
