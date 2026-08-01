@@ -9,29 +9,29 @@ import { Toaster } from 'sonner';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: {
-        default: 'RentNest — Find & List Rental Properties with Ease',
-        template: '%s | RentNest',
-    },
-    description:
-        'RentNest is a modern rental property marketplace connecting tenants, landlords, and admins.',
+  title: {
+    default: 'RentNest — Find & List Rental Properties with Ease',
+    template: '%s | RentNest',
+  },
+  description:
+    'RentNest is a modern rental property marketplace connecting tenants, landlords, and admins.',
 };
 
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <html lang="en">
-            <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
-                <Providers>
-                    <Navbar />
-                    <main className="flex-1 pt-16">{children}</main>
-                    <Footer />
-                    <Toaster position="bottom-right" richColors closeButton />
-                </Providers>
-            </body>
-        </html>
-    );
+  return (
+    <html lang="en">
+      <body className={`${inter.className} antialiased min-h-screen flex flex-col`}>
+        <Providers>
+          <Navbar />
+          <main className="flex-1 pt-16">{children}</main>
+          <Footer />
+          <Toaster position="bottom-right" richColors closeButton />
+        </Providers>
+      </body>
+    </html>
+  );
 }
