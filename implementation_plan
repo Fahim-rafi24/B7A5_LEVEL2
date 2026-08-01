@@ -1,0 +1,96 @@
+# Implementation Plan: RentNest Next.js Frontend Application
+
+Build a modern, responsive, full-featured **Next.js 14+ (App Router)** frontend application in the `fontend` directory for **RentNest** (Property Rental Marketplace), following the UI/UX design established in `fontend_ui.html` and meeting all requirements in `assignment_req.md` & `my_req-RentNest-Frontend.md`. Connect all pages and features to the backend API running in `backend/`.
+
+---
+
+## User Review Required
+
+> [!IMPORTANT]
+> **Backend Connectivity & CORS**: The Express backend in `backend/` runs on `http://localhost:5000` by default and accepts `SITE_URL` (configured as `http://localhost:5173` or `http://localhost:3000`). We will configure Next.js environment variables (`NEXT_PUBLIC_API_URL=http://localhost:5000/api`) and handle credential-based HTTP-Only cookie / JWT Bearer token authentication.
+
+> [!NOTE]
+> **Mandatory Deliverables Included**:
+> 1. Complete **Next.js App Router** structure with TypeScript, Tailwind CSS, Lucide icons, and Sonner toast notifications.
+> 2. **Role-Based Access Control (RBAC)** for Tenants, Landlords, and Admins with Next.js **Middleware** route protection.
+> 3. **Stripe Payment Gateway Integration** with dedicated `/payment/success` and `/payment/cancel` pages.
+> 4. `API_INTEGRATION.md` file documenting all 31+ endpoint mappings.
+> 5. Comprehensive `README.md` with admin test credentials, setup instructions, and feature list.
+> 6. Structured git commit history with conventional commit messages.
+
+---
+
+## Proposed Changes
+
+### Tech Stack & Architecture
+- **Framework**: Next.js 14+ (App Router, TypeScript)
+- **Styling**: Tailwind CSS, custom design tokens matching `fontend_ui.html` (Inter font, smooth gradients, glassmorphism, responsive cards & custom scrollbars)
+- **Icons**: Lucide React Icons & FontAwesome (matching original design icons)
+- **State & Data Fetching**: TanStack React Query / Axios with credentials enabled
+- **Notifications**: Sonner / Toast UI notifications
+- **Middleware**: Next.js `middleware.ts` for route protection based on user role (`tenant`, `landlord`, `admin`)
+
+---
+
+### Component & Page Architecture
+
+#### 1. Setup & Design System (`/fontend`)
+- Initialize Next.js app in `fontend/` with TypeScript, Tailwind CSS, ESLint.
+- Configure `tailwind.config.ts`, `globals.css` with exact color palette, utility classes (`.btn-primary`, `.btn-secondary`, `.btn-success`, `.btn-danger`, `.card`, `.badge-*`, `.hero-gradient`, `.text-gradient`).
+- Create `src/lib/api.ts` axios/fetch wrapper supporting cookie credentials & JWT token handling.
+- Create `src/context/AuthContext.tsx` for global auth state (user profile, role switching, login, logout, register).
+
+#### 2. Layout & Global Components (`src/components`)
+- `Navbar.tsx`: Glassmorphism header, brand logo, navigation links, quick role-switcher, user avatar / auth modal trigger.
+- `Footer.tsx`: Clean footer with navigation links and branding.
+- `ToastContainer.tsx`: Sonner/Toast handler for uniform error/success feedback.
+- `AuthModal.tsx`: Embedded modal for quick Sign In / Sign Up.
+- `PropertyCard.tsx`: Property card with image overlay price, location, beds/baths/sqft metrics, amenities chips.
+- `LoadingSkeleton.tsx`: Loading states for grids, property detail, and dashboard tables.
+- `ErrorBoundary.tsx` & `error.tsx`: Consistent error handling and user feedback.
+
+#### 3. Core App Router Pages (`src/app`)
+
+##### Public Pages
+- `(public)/page.tsx` (`/`): Home Page with Hero Banner, Search input, Property Categories section, Featured Properties grid, Call-To-Action banner.
+- `(public)/properties/page.tsx` (`/properties`): Property Catalog with Sidebar Filters (location, price range, property type/category, amenities chips), sorting dropdown, pagination, grid view.
+- `(public)/properties/[id]/page.tsx` (`/properties/[id]`): Property Detail Page with image gallery thumbnail selector, property meta, description, landlord card, reviews list, and "Request to Rent" form modal.
+
+##### Auth Pages
+- `(auth)/login/page.tsx` (`/auth/login`): Sign In form with field validation and credentials submission to `POST /api/auth/login`.
+- `(auth)/register/page.tsx` (`/auth/register`): Role selector (`tenant`, `landlord`, `admin`), name, email, phone, password registration sending to `POST /api/auth/register`.
+
+##### Tenant Dashboard (`/dashboard/tenant`)
+- `src/app/dashboard/tenant/page.tsx`: Overview stats (Active Rentals, Pending Requests, Approved, Total Spent), Rental Request History table (with status badges: `PENDING`, `APPROVED`, `REJECTED`, `ACTIVE`, `COMPLETED`), "Pay Now" CTA button for approved requests, Payment History table, Review submission modal.
+
+##### Landlord Dashboard (`/dashboard/landlord`)
+- `src/app/dashboard/landlord/page.tsx`: Overview stats (Total Properties, Active Listings, Pending Requests, Total Earnings), Landlord's Properties table with edit/delete actions and availability toggles.
+- `src/app/dashboard/landlord/properties/new/page.tsx` (`/dashboard/landlord/properties/new`): Property creation form (Title, Location, Price, Category, Beds, Baths, Sqft, Image URL, Description, Amenities checkboxes).
+- `src/app/dashboard/landlord/requests/page.tsx` (`/dashboard/landlord/requests`): Table of incoming rental requests with optimistic Approve/Reject action buttons and toast alerts.
+
+##### Admin Dashboard (`/dashboard/admin`)
+- `src/app/dashboard/admin/page.tsx`: Platform statistics (Total Users, Properties, Pending Requests, Revenue), User Management table with Search and Ban/Unban actions, Content Moderation table for properties and rental requests.
+
+##### Payment Integration (`/payment`)
+- `src/app/payment/init/[requestId]/page.tsx` (`/payment/init`): Payment summary card, gateway selector (Stripe / SSLCommerz), Stripe Checkout trigger.
+- `src/app/payment/success/page.tsx` (`/payment/success`): Success confirmation screen with dashboard CTA.
+- `src/app/payment/cancel/page.tsx` (`/payment/cancel`): Cancellation feedback screen with retry CTA.
+
+##### Middleware & Utility Files
+- `src/middleware.ts`: Next.js middleware enforcing role-based route access (`/dashboard/tenant` -> Tenant, `/dashboard/landlord` -> Landlord, `/dashboard/admin` -> Admin).
+- `API_INTEGRATION.md`: Mapping of all components to backend endpoints (`POST /api/auth/login`, `GET /api/properties`, `POST /api/rentals`, `POST /api/payments/create`, etc.).
+
+---
+
+## Verification Plan
+
+### Automated Verification
+- Run `npm run build` inside `fontend/` to ensure zero TypeScript or Next.js build errors.
+- Run `npm run dev` to verify server startup without warnings.
+
+### Manual Verification
+1. **Auth & RBAC**: Test register and login as Tenant, Landlord, Admin; verify role-specific dashboard views and middleware route redirects.
+2. **Property Browsing & CRUD**: Search properties, filter by category/price, view single property detail page, list new property as landlord.
+3. **Rental Request Flow**: Submit rental request as tenant -> Landlord approves request -> Tenant sees "Pay Now" CTA.
+4. **Payment Flow**: Trigger Stripe payment flow, verify success page redirect (`/payment/success`) and payment confirmation.
+5. **Admin Moderation**: View all users, trigger Ban/Unban action, inspect moderation tables.
