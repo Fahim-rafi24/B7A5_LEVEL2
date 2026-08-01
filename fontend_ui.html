@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RentNest — All Pages Demo</title>
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap"
+        rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+    <style>
+        /* ── CSS Variables ── */
+        :root {
+            --primary: #2563EB;
+            --primary-light: #3B82F6;
+            --primary-dark: #1D4ED8;
+            --primary-gradient: linear-gradient(135deg, #2563EB 0%, #7C3AED 100%);
+            --secondary: #0F172A;
+            --surface: #FFFFFF;
+            --surface-alt: #F8FAFC;
+            --border: #E2E8F0;
+            --text: #0F172A;
+            --text-secondary: #475569;
+            --text-muted: #94A3B8;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.06), 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.08), 0 4px 16px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 24px 64px rgba(0, 0, 0, 0.10), 0 8px 24px rgba(0, 0, 0, 0.06);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--surface-alt);
+            color: var(--text);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--surface-alt);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 8px;
+        }
+
+        /* ── Utilities ── */
+        .container-custom {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.72);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-primary {
+            background: var(--primary-gradient);
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.30);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 28px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: var(--surface);
+            color: var(--text);
+            padding: 10px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-secondary:hover {
+            background: var(--surface-alt);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-success {
+            background: #10B981;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.30);
+        }
+
+        .btn-danger {
+            background: #EF4444;
+            color: #fff;
+            padding: 10px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-danger:hover {
+            background: #DC2626;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(239, 68, 68, 0.30);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            padding: 10px 24px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 0.875rem;
+            border: 1.5px solid var(--primary);
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        /* ── Cards ── */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-4px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--border);
+        }
+
+        /* ── Badges ── */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+
+        .badge-pending {
+            background: #FEF3C7;
+            color: #92400E;
+        }
+
+        .badge-approved {
+            background: #DBEAFE;
+            color: #1E40AF;
+        }
+
+        .badge-rejected {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .badge-active {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .badge-completed {
+            background: #F1F5F9;
+            color: #475569;
+        }
+
+        /* ── Skeleton ── */
+        .skeleton {
+            background: linear-gradient(90deg, #E2E8F0 25%, #F1F5F9 50%, #E2E8F0 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.6s ease-in-out infinite;
+            border-radius: var(--radius);
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -200% 0;
+            }
+
+            100% {
+                background-position: 200% 0;
+            }
+        }
+
+        /* ── Toast ── */
+        .toast-container {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-width: 420px;
+            width: 100%;
+        }
+
+        .toast {
+            padding: 16px 20px;
+            border-radius: var(--radius);
+            background: var(--surface);
+            box-shadow: var(--shadow-xl);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            animation: slideIn 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            transform-origin: bottom right;
+        }
+
+        .toast-success {
+            border-left-color: #10B981;
+        }
+
+        .toast-error {
+            border-left-color: #EF4444;
+        }
+
+        .toast-warning {
+            border-left-color: #F59E0B;
+        }
+
+        .toast-info {
+            border-left-color: #3B82F6;
+        }
+
+        .toast-icon {
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-title {
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .toast-message {
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+        }
+
+        .toast-close {
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+            background: none;
+            border: none;
+            font-size: 1rem;
+            padding: 4px;
+        }
+
+        .toast-close:hover {
+            color: var(--text);
+        }
+
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateX(40px) scale(0.96);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0) scale(1);
+            }
+        }
+
+        /* ── Modal (auth) ── */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 23, 42, 0.50);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            z-index: 10000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-box {
+            background: var(--surface);
+            border-radius: var(--radius-xl);
+            max-width: 480px;
+            width: 100%;
+            padding: 32px;
+            box-shadow: var(--shadow-xl);
+            animation: modalIn 0.30s cubic-bezier(0.22, 1, 0.36, 1);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        @keyframes modalIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.94) translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* ── Page sections ── */
+        .page-section {
+            display: none;
+            animation: fadeUp 0.35s ease;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(16px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ── Dashboard tabs ── */
+        .dashboard-tab {
+            padding: 10px 20px;
+            border-radius: 9999px;
+            font-weight: 500;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            background: transparent;
+            color: var(--text-secondary);
+        }
+
+        .dashboard-tab:hover {
+            color: var(--text);
+            background: var(--surface-alt);
+        }
+
+        .dashboard-tab.active {
+            background: var(--primary);
+            color: #fff;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.25);
+        }
+
+        /* ── Role switcher (header) ── */
+        .role-btn {
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border: 1.5px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .role-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .role-btn.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* ── Stat card ── */
+        .stat-card {
+            background: var(--surface);
+            border-radius: var(--radius);
+            padding: 20px 24px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        /* ── Filter chips ── */
+        .filter-chip {
+            padding: 6px 16px;
+            border-radius: 9999px;
+            font-size: 0.8125rem;
+            font-weight: 500;
+            border: 1px solid var(--border);
+            background: var(--surface);
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+
+        .filter-chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .filter-chip.active {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary);
+        }
+
+        /* ── Form inputs ── */
+        .form-input {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: var(--radius);
+            border: 1.5px solid var(--border);
+            font-size: 0.875rem;
+            transition: var(--transition);
+            background: var(--surface);
+            color: var(--text);
+            outline: none;
+        }
+
+        .form-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-label {
+            font-weight: 600;
+            font-size: 0.8125rem;
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        /* ── Table ── */
+        .table-wrap {
+            overflow-x: auto;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            background: var(--surface);
+        }
+
+        .table-wrap table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .table-wrap th {
+            text-align: left;
+            padding: 14px 18px;
+            background: var(--surface-alt);
+            font-weight: 600;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table-wrap td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .table-wrap tr:last-child td {
+            border-bottom: none;
+        }
+
+        .table-wrap tr:hover td {
+            background: var(--surface-alt);
+        }
+
+        /* ── Hero gradient ── */
+        .hero-gradient {
+            background: linear-gradient(160deg, #0F172A 0%, #1E293B 50%, #0F172A 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-gradient::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -20%;
+            width: 60%;
+            height: 80%;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-gradient::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 50%;
+            height: 70%;
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .text-gradient {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ── Gallery thumb ── */
+        .gallery-thumb {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--radius);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: var(--transition);
+        }
+
+        .gallery-thumb:hover {
+            border-color: var(--primary);
+        }
+
+        .gallery-thumb.active {
+            border-color: var(--primary);
+        }
+
+        /* ── Step indicator ── */
+        .step-indicator {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-dot {
+            width: 32px;
+            height: 32px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: 2px solid var(--border);
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .step-dot.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .step-dot.done {
+            border-color: #10B981;
+            background: #10B981;
+            color: #fff;
+        }
+
+        .step-line {
+            flex: 1;
+            height: 2px;
+            background: var(--border);
+            max-width: 60px;
+        }
+
+        .step-line.done {
+            background: #10B981;
+        }
+
+        /* ── Payment card ── */
+        .payment-card {
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            border: 2px solid var(--border);
+            padding: 24px;
+            transition: var(--transition);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .payment-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow-md);
+        }
+
+        .payment-card.selected {
+            border-color: var(--primary);
+            background: #EFF6FF;
+            box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.08);
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 9999px;
+            margin-right: 6px;
+        }
+
+        .status-dot.green {
+            background: #10B981;
+        }
+
+        .status-dot.yellow {
+            background: #F59E0B;
+        }
+
+        .status-dot.red {
+            background: #EF4444;
+        }
+
+        .status-dot.blue {
+            background: #3B82F6;
+        }
+
+        .status-dot.gray {
+            background: #94A3B8;
+        }
+
+        /* ── Dropdown menu ── */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--surface);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-xl);
+            min-width: 200px;
+            padding: 8px;
+            border: 1px solid var(--border);
+            z-index: 60;
+            margin-top: 4px;
+        }
+
+        .dropdown-menu.open {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 14px;
+            border-radius: var(--radius);
+            font-size: 0.8125rem;
+            color: var(--text);
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            background: transparent;
+            width: 100%;
+            text-align: left;
+        }
+
+        .dropdown-item:hover {
+            background: var(--surface-alt);
+            color: var(--primary);
+        }
+
+        .dropdown-item i {
+            width: 20px;
+            color: var(--text-muted);
+        }
+
+        .dropdown-item:hover i {
+            color: var(--primary);
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 768px) {
+            .container-custom {
+                padding: 0 16px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .modal-box {
+                padding: 24px;
+                margin: 16px;
+            }
+
+            .toast-container {
+                bottom: 16px;
+                right: 16px;
+                left: 16px;
+                max-width: 100%;
+            }
+
+            .dropdown-menu {
+                right: -16px;
+                min-width: 180px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ═══ TOAST CONTAINER ═══ -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ═══ AUTH MODAL (Optional, kept for quick login) ═══ -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-box">
+            <div class="flex items-center justify-between mb-6">
+                <h2 class="text-xl font-bold" id="authModalTitle">Sign In</h2>
+                <button class="text-2xl text-text-muted hover:text-text transition"
+                    onclick="closeAuthModal()">&times;</button>
+            </div>
+            <div class="flex bg-surface-alt rounded-xl p-1 mb-6">
+                <button class="flex-1 py-2 rounded-lg font-medium text-sm transition" id="authTabLogin"
+                    onclick="switchAuthTab('login')">Sign In</button>
+                <button class="flex-1 py-2 rounded-lg font-medium text-sm transition text-text-muted"
+                    id="authTabRegister" onclick="switchAuthTab('register')">Sign Up</button>
+            </div>
+            <div id="authLoginForm">
+                <div class="mb-4">
+                    <label class="form-label">Email</label>
+                    <input class="form-input" type="email" placeholder="you@example.com" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input class="form-input" type="password" placeholder="••••••••" />
+                </div>
+                <button class="btn-primary w-full justify-center" onclick="handleAuth()">Sign In</button>
+                <p class="text-center text-sm text-text-muted mt-4">Demo: any email · password: demo123</p>
+            </div>
+            <div id="authRegisterForm" style="display:none;">
+                <div class="mb-4">
+                    <label class="form-label">Full Name</label>
+                    <input class="form-input" type="text" placeholder="John Doe" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Email</label>
+                    <input class="form-input" type="email" placeholder="you@example.com" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">Password</label>
+                    <input class="form-input" type="password" placeholder="••••••••" />
+                </div>
+                <div class="mb-4">
+                    <label class="form-label">I am a</label>
+                    <select class="form-input">
+                        <option value="tenant">Tenant — Looking for a home</option>
+                        <option value="landlord">Landlord — Listing properties</option>
+                        <option value="admin">Admin — Platform moderator</option>
+                    </select>
+                </div>
+                <button class="btn-primary w-full justify-center" onclick="handleAuth()">Create Account</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="glass fixed top-0 left-0 right-0 z-50">
+        <div class="container-custom flex items-center justify-between h-16">
+
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 text-xl font-extrabold tracking-tight"
+                onclick="navigateTo('home')">
+                <span class="text-gradient">RentNest</span>
+                <span class="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">🏠</span>
+            </a>
+
+            <!-- Center Nav (desktop) -->
+            <div class="hidden md:flex items-center gap-1">
+                <button class="px-4 py-2 rounded-lg text-sm font-medium hover:bg-surface-alt transition"
+                    onclick="navigateTo('home')">Home</button>
+                <button class="px-4 py-2 rounded-lg text-sm font-medium hover:bg-surface-alt transition"
+                    onclick="navigateTo('properties')">Properties</button>
+                <button class="px-4 py-2 rounded-lg text-sm font-medium hover:bg-surface-alt transition"
+                    onclick="navigateTo('dashboard')">Dashboard</button>
+
+                <!-- Pages Dropdown -->
+                <div class="relative" id="pagesDropdown">
+                    <button
+                        class="px-4 py-2 rounded-lg text-sm font-medium hover:bg-surface-alt transition flex items-center gap-1"
+                        onclick="toggleDropdown()">
+                        Pages <i class="fa-solid fa-chevron-down text-xs"></i>
+                    </button>
+                    <div class="dropdown-menu" id="pagesMenu">
+                        <button class="dropdown-item" onclick="navigateTo('login')"><i
+                                class="fa-regular fa-right-to-bracket"></i> Login</button>
+                        <button class="dropdown-item" onclick="navigateTo('register')"><i
+                                class="fa-regular fa-user-plus"></i> Register</button>
+                        <button class="dropdown-item" onclick="navigateTo('property-detail')"><i
+                                class="fa-regular fa-building"></i> Property Detail</button>
+                        <button class="dropdown-item" onclick="navigateTo('payment-init')"><i
+                                class="fa-regular fa-credit-card"></i> Payment Init</button>
+                        <button class="dropdown-item" onclick="navigateTo('payment-success')"><i
+                                class="fa-regular fa-circle-check"></i> Payment Success</button>
+                        <button class="dropdown-item" onclick="navigateTo('payment-cancel')"><i
+                                class="fa-regular fa-circle-xmark"></i> Payment Cancel</button>
+                        <button class="dropdown-item" onclick="navigateTo('landlord-new-property')"><i
+                                class="fa-regular fa-plus"></i> New Property</button>
+                        <button class="dropdown-item" onclick="navigateTo('landlord-requests')"><i
+                                class="fa-regular fa-list"></i> Landlord Requests</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class="flex items-center gap-3">
+                <div class="hidden sm:flex items-center gap-1 bg-surface-alt rounded-full p-1 border border-border">
+                    <button class="role-btn active" data-role="tenant" onclick="switchRole('tenant')">Tenant</button>
+                    <button class="role-btn" data-role="landlord" onclick="switchRole('landlord')">Landlord</button>
+                    <button class="role-btn" data-role="admin" onclick="switchRole('admin')">Admin</button>
+                </div>
+                <button class="btn-primary text-sm px-5 py-2" onclick="openAuthModal()">
+                    <i class="fa-regular fa-user"></i> Sign In
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ═══ MAIN CONTENT ═══ -->
+    <main class="pt-16">
+
+        <!-- ─── HOME ─── -->
+        <section class="page-section active" id="page-home">
+            <div class="hero-gradient text-white py-20 md:py-28 relative">
+                <div class="container-custom relative z-10">
+                    <div class="max-w-2xl">
+                        <div
+                            class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-1.5 rounded-full text-sm font-medium mb-6 border border-white/10">
+                            <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                            Find your next home
+                        </div>
+                        <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight mb-5">
+                            Discover <br /><span class="text-gradient">your perfect</span> rental
+                        </h1>
+                        <p class="text-white/70 text-lg max-w-lg mb-8">
+                            Browse thousands of rental properties. List your space. All in one place.
+                        </p>
+                        <div
+                            class="flex flex-col sm:flex-row gap-3 bg-white/10 backdrop-blur-sm p-2 rounded-2xl border border-white/10 max-w-xl">
+                            <input type="text" placeholder="Search by city, property, or ZIP..."
+                                class="flex-1 bg-transparent text-white placeholder-white/50 px-4 py-3 outline-none text-sm" />
+                            <button class="btn-primary whitespace-nowrap justify-center"><i
+                                    class="fa-solid fa-magnifying-glass"></i> Search</button>
+                        </div>
+                        <div class="flex gap-8 mt-10">
+                            <div><span class="text-2xl font-bold">12k+</span> <span
+                                    class="text-white/60 text-sm ml-1">Properties</span></div>
+                            <div><span class="text-2xl font-bold">4.8k</span> <span
+                                    class="text-white/60 text-sm ml-1">Happy tenants</span></div>
+                            <div><span class="text-2xl font-bold">98%</span> <span
+                                    class="text-white/60 text-sm ml-1">Satisfaction</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-custom py-16">
+                <div class="flex items-center justify-between mb-8">
+                    <div>
+                        <h2 class="section-title">Featured <span class="text-gradient">Properties</span></h2>
+                        <p class="section-subtitle">Handpicked rentals just for you</p>
+                    </div>
+                    <button class="text-primary font-semibold text-sm hover:underline"
+                        onclick="navigateTo('properties')">View all →</button>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="propertyGrid"></div>
+            </div>
+
+            <div class="bg-white border-y border-border py-16">
+                <div class="container-custom">
+                    <h2 class="section-title text-center mb-4">Browse by <span class="text-gradient">Category</span>
+                    </h2>
+                    <p class="text-center text-text-secondary mb-10">Find exactly what you're looking for</p>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="card p-6 text-center hover:border-primary cursor-pointer">
+                            <div class="text-3xl mb-2">🏠</div>
+                            <div class="font-semibold">Apartments</div>
+                            <div class="text-xs text-text-muted">1,234 listings</div>
+                        </div>
+                        <div class="card p-6 text-center hover:border-primary cursor-pointer">
+                            <div class="text-3xl mb-2">🏡</div>
+                            <div class="font-semibold">Houses</div>
+                            <div class="text-xs text-text-muted">892 listings</div>
+                        </div>
+                        <div class="card p-6 text-center hover:border-primary cursor-pointer">
+                            <div class="text-3xl mb-2">🏢</div>
+                            <div class="font-semibold">Condos</div>
+                            <div class="text-xs text-text-muted">456 listings</div>
+                        </div>
+                        <div class="card p-6 text-center hover:border-primary cursor-pointer">
+                            <div class="text-3xl mb-2">🏘️</div>
+                            <div class="font-semibold">Townhouses</div>
+                            <div class="text-xs text-text-muted">321 listings</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-custom py-16">
+                <div
+                    class="bg-gradient-to-r from-primary to-purple-600 rounded-2xl p-10 md:p-14 text-white text-center relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/3">
+                    </div>
+                    <div
+                        class="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4">
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="text-3xl font-bold mb-3">Ready to find your dream home?</h2>
+                        <p class="text-white/80 max-w-lg mx-auto mb-6">Join thousands of happy tenants and landlords on
+                            RentNest.</p>
+                        <button
+                            class="bg-white text-primary font-semibold px-8 py-3 rounded-full hover:shadow-xl transition hover:scale-105"
+                            onclick="openAuthModal()">Get Started <i class="fa-solid fa-arrow-right ml-2"></i></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PROPERTIES (browse) ─── -->
+        <section class="page-section" id="page-properties">
+            <div class="container-custom py-8 md:py-12">
+                <div class="flex flex-col md:flex-row gap-8">
+                    <aside class="md:w-72 flex-shrink-0">
+                        <div class="card p-6 sticky top-24">
+                            <h3 class="font-bold text-lg mb-4">Filters</h3>
+                            <div class="mb-4"><label class="form-label">Location</label><input class="form-input"
+                                    placeholder="City, state, or ZIP" /></div>
+                            <div class="mb-4"><label class="form-label">Price Range</label>
+                                <div class="flex gap-2"><input class="form-input" placeholder="Min"
+                                        type="number" /><input class="form-input" placeholder="Max" type="number" />
+                                </div>
+                            </div>
+                            <div class="mb-4"><label class="form-label">Property Type</label><select class="form-input">
+                                    <option>All types</option>
+                                    <option>Apartment</option>
+                                    <option>House</option>
+                                    <option>Condo</option>
+                                    <option>Townhouse</option>
+                                </select></div>
+                            <div class="mb-4"><label class="form-label">Amenities</label>
+                                <div class="flex flex-wrap gap-2"><span class="filter-chip active">Wi-Fi</span><span
+                                        class="filter-chip">Parking</span><span class="filter-chip">Pool</span><span
+                                        class="filter-chip">Gym</span><span class="filter-chip">Pet Friendly</span>
+                                </div>
+                            </div>
+                            <button class="btn-primary w-full justify-center">Apply Filters</button>
+                            <button class="btn-secondary w-full justify-center mt-2 text-sm">Reset</button>
+                        </div>
+                    </aside>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <h2 class="section-title text-xl">All Properties</h2>
+                                <p class="text-sm text-text-muted">Showing 12 of 1,234 results</p>
+                            </div>
+                            <select class="form-input w-auto">
+                                <option>Newest</option>
+                                <option>Price: Low → High</option>
+                                <option>Price: High → Low</option>
+                                <option>Most Popular</option>
+                            </select>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="propertyGridAll"></div>
+                        <div class="flex items-center justify-center gap-2 mt-10">
+                            <button
+                                class="px-4 py-2 rounded-lg border border-border text-sm hover:bg-surface-alt transition">←
+                                Prev</button>
+                            <button class="px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold">1</button>
+                            <button
+                                class="px-4 py-2 rounded-lg border border-border text-sm hover:bg-surface-alt transition">2</button>
+                            <button
+                                class="px-4 py-2 rounded-lg border border-border text-sm hover:bg-surface-alt transition">3</button>
+                            <button
+                                class="px-4 py-2 rounded-lg border border-border text-sm hover:bg-surface-alt transition">Next
+                                →</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PROPERTY DETAIL ─── -->
+        <section class="page-section" id="page-property-detail">
+            <div class="container-custom py-8 md:py-12">
+                <button class="text-text-muted hover:text-text transition mb-6 flex items-center gap-2 text-sm"
+                    onclick="navigateTo('properties')"><i class="fa-solid fa-arrow-left"></i> Back to
+                    properties</button>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2">
+                        <div class="card overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=400&fit=crop"
+                                alt="Property" class="w-full h-72 object-cover" />
+                            <div class="flex gap-2 p-4 overflow-x-auto">
+                                <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=120&h=80&fit=crop"
+                                    class="gallery-thumb active" />
+                                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=120&h=80&fit=crop"
+                                    class="gallery-thumb" />
+                                <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=120&h=80&fit=crop"
+                                    class="gallery-thumb" />
+                                <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=120&h=80&fit=crop"
+                                    class="gallery-thumb" />
+                            </div>
+                        </div>
+                        <div class="mt-6">
+                            <div class="flex items-start justify-between mb-2">
+                                <h2 class="text-2xl font-bold">Luxury Downtown Apartment</h2>
+                                <span class="text-2xl font-bold text-primary">$2,400<span
+                                        class="text-sm font-normal text-text-muted">/mo</span></span>
+                            </div>
+                            <p class="text-text-muted text-sm mb-4"><i class="fa-regular fa-location-dot"></i> 123 Main
+                                St, New York, NY 10001</p>
+                            <div class="flex flex-wrap gap-4 text-sm mb-4">
+                                <span><i class="fa-regular fa-bed"></i> 2 Beds</span>
+                                <span><i class="fa-regular fa-bath"></i> 2 Baths</span>
+                                <span><i class="fa-regular fa-ruler"></i> 1,200 sq ft</span>
+                                <span><i class="fa-regular fa-car"></i> Parking included</span>
+                            </div>
+                            <p class="text-text-secondary text-sm leading-relaxed">This stunning 2-bedroom, 2-bathroom
+                                apartment is located in the heart of downtown. With floor-to-ceiling windows, modern
+                                finishes, and a state-of-the-art kitchen, this is the perfect place to call home.
+                                Building amenities include a rooftop pool, fitness center, and 24/7 concierge.</p>
+                            <div class="mt-6 flex flex-wrap gap-2">
+                                <span class="badge bg-surface-alt text-text-secondary border border-border">Wi-Fi</span>
+                                <span
+                                    class="badge bg-surface-alt text-text-secondary border border-border">Parking</span>
+                                <span class="badge bg-surface-alt text-text-secondary border border-border">Pool</span>
+                                <span class="badge bg-surface-alt text-text-secondary border border-border">Gym</span>
+                                <span class="badge bg-surface-alt text-text-secondary border border-border">Pet
+                                    Friendly</span>
+                                <span class="badge bg-surface-alt text-text-secondary border border-border">Air
+                                    Conditioning</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1">
+                        <div class="card p-6 sticky top-24">
+                            <h3 class="font-bold text-lg mb-4">Request to Rent</h3>
+                            <div class="flex items-center gap-3 mb-4 p-3 bg-surface-alt rounded-xl">
+                                <div
+                                    class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary font-bold">
+                                    JD</div>
+                                <div>
+                                    <div class="font-semibold text-sm">John Doe</div>
+                                    <div class="text-xs text-text-muted">Verified Landlord</div>
+                                </div>
+                            </div>
+                            <div class="mb-4"><label class="form-label">Move-in Date</label><input class="form-input"
+                                    type="date" value="2026-08-15" /></div>
+                            <div class="mb-4"><label class="form-label">Move-out Date</label><input class="form-input"
+                                    type="date" value="2026-09-15" /></div>
+                            <div class="mb-4"><label class="form-label">Message to landlord</label><textarea
+                                    class="form-input" rows="3"
+                                    placeholder="Hi, I'm interested in this property..."></textarea></div>
+                            <button class="btn-primary w-full justify-center"
+                                onclick="showToast('success','Request Submitted','Your rental request has been sent to the landlord.')"><i
+                                    class="fa-regular fa-paper-plane"></i> Submit Request</button>
+                            <div class="mt-4 p-3 bg-blue-50 rounded-xl text-sm text-blue-800"><i
+                                    class="fa-regular fa-shield-check mr-2"></i> Your request is secure and encrypted.
+                            </div>
+                        </div>
+                        <div class="card p-6 mt-4 border-2 border-primary/20 bg-primary/5">
+                            <h4 class="font-bold text-sm mb-3">💳 Payment Flow Demo</h4>
+                            <div class="step-indicator mb-4">
+                                <div class="step-dot done">✓</div>
+                                <div class="step-line done"></div>
+                                <div class="step-dot active">2</div>
+                                <div class="step-line"></div>
+                                <div class="step-dot">3</div>
+                            </div>
+                            <p class="text-sm text-text-secondary mb-3">After approval, click below to simulate payment.
+                            </p>
+                            <button class="btn-success w-full justify-center text-sm" onclick="openPaymentDemo()"><i
+                                    class="fa-regular fa-credit-card"></i> Proceed to Payment</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── LOGIN ─── -->
+        <section class="page-section" id="page-login">
+            <div class="container-custom py-12 max-w-md mx-auto">
+                <div class="card p-8">
+                    <h2 class="text-2xl font-bold mb-2">Sign In</h2>
+                    <p class="text-text-muted text-sm mb-6">Welcome back to RentNest</p>
+                    <div class="mb-4"><label class="form-label">Email</label><input class="form-input" type="email"
+                            placeholder="you@example.com" /></div>
+                    <div class="mb-4"><label class="form-label">Password</label><input class="form-input"
+                            type="password" placeholder="••••••••" /></div>
+                    <button class="btn-primary w-full justify-center" onclick="handleAuth()">Sign In</button>
+                    <p class="text-center text-sm mt-4">Don't have an account? <a href="#"
+                            class="text-primary font-semibold" onclick="navigateTo('register')">Sign up</a></p>
+                    <p class="text-center text-xs text-text-muted mt-2">Demo: any email · password: demo123</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── REGISTER ─── -->
+        <section class="page-section" id="page-register">
+            <div class="container-custom py-12 max-w-md mx-auto">
+                <div class="card p-8">
+                    <h2 class="text-2xl font-bold mb-2">Create Account</h2>
+                    <p class="text-text-muted text-sm mb-6">Join RentNest today</p>
+                    <div class="mb-4"><label class="form-label">Full Name</label><input class="form-input" type="text"
+                            placeholder="John Doe" /></div>
+                    <div class="mb-4"><label class="form-label">Email</label><input class="form-input" type="email"
+                            placeholder="you@example.com" /></div>
+                    <div class="mb-4"><label class="form-label">Password</label><input class="form-input"
+                            type="password" placeholder="••••••••" /></div>
+                    <div class="mb-4"><label class="form-label">I am a</label><select class="form-input">
+                            <option value="tenant">Tenant</option>
+                            <option value="landlord">Landlord</option>
+                            <option value="admin">Admin</option>
+                        </select></div>
+                    <button class="btn-primary w-full justify-center" onclick="handleAuth()">Create Account</button>
+                    <p class="text-center text-sm mt-4">Already have an account? <a href="#"
+                            class="text-primary font-semibold" onclick="navigateTo('login')">Sign in</a></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── DASHBOARD ─── -->
+        <section class="page-section" id="page-dashboard">
+            <div class="container-custom py-8 md:py-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="section-title text-2xl" id="dashboardTitle">Tenant Dashboard</h2>
+                        <p class="text-text-secondary text-sm" id="dashboardSubtitle">Manage your rentals and requests
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-2 bg-surface-alt rounded-full p-1 border border-border">
+                        <button class="dashboard-tab active" data-dash="tenant"
+                            onclick="switchDashboardTab('tenant')">Tenant</button>
+                        <button class="dashboard-tab" data-dash="landlord"
+                            onclick="switchDashboardTab('landlord')">Landlord</button>
+                        <button class="dashboard-tab" data-dash="admin"
+                            onclick="switchDashboardTab('admin')">Admin</button>
+                    </div>
+                </div>
+
+                <!-- Tenant -->
+                <div id="dash-tenant">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Active Rentals</div>
+                            <div class="text-2xl font-bold">2</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Pending Requests</div>
+                            <div class="text-2xl font-bold text-yellow-600">3</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Approved</div>
+                            <div class="text-2xl font-bold text-blue-600">1</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Total Spent</div>
+                            <div class="text-2xl font-bold">$4,200</div>
+                        </div>
+                    </div>
+                    <div class="card p-6 mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Rental Requests</h3><span class="text-sm text-text-muted">Last
+                                30 days</span>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Dates</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="font-medium">Luxury Downtown Apt</span></td>
+                                        <td>Aug 15 – Sep 15</td>
+                                        <td><span class="badge badge-pending"><span
+                                                    class="status-dot yellow"></span>Pending</span></td>
+                                        <td><span class="text-text-muted text-sm">Waiting...</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">Cozy Studio in Brooklyn</span></td>
+                                        <td>Sep 1 – Oct 1</td>
+                                        <td><span class="badge badge-approved"><span
+                                                    class="status-dot blue"></span>Approved</span></td>
+                                        <td><button class="btn-success text-xs px-4 py-1.5"><i
+                                                    class="fa-regular fa-credit-card"></i> Pay Now</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">Modern 2BR in Soho</span></td>
+                                        <td>Oct 5 – Nov 5</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Active</span></td>
+                                        <td><button class="btn-secondary text-xs px-4 py-1.5"><i
+                                                    class="fa-regular fa-star"></i> Leave Review</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">Penthouse with View</span></td>
+                                        <td>Nov 10 – Dec 10</td>
+                                        <td><span class="badge badge-rejected"><span
+                                                    class="status-dot red"></span>Rejected</span></td>
+                                        <td><span class="text-text-muted text-sm">—</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Payment History</h3><span class="text-sm text-text-muted">3
+                                transactions</span>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Amount</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Luxury Downtown Apt</td>
+                                        <td>$2,400</td>
+                                        <td>Aug 10, 2026</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Paid</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Cozy Studio in Brooklyn</td>
+                                        <td>$1,800</td>
+                                        <td>Sep 2, 2026</td>
+                                        <td><span class="badge badge-approved"><span
+                                                    class="status-dot blue"></span>Pending</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Modern 2BR in Soho</td>
+                                        <td>$3,200</td>
+                                        <td>Oct 1, 2026</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Paid</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Landlord -->
+                <div id="dash-landlord" style="display:none;">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Total Properties</div>
+                            <div class="text-2xl font-bold">6</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Active Listings</div>
+                            <div class="text-2xl font-bold text-green-600">4</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Pending Requests</div>
+                            <div class="text-2xl font-bold text-yellow-600">5</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Total Earnings</div>
+                            <div class="text-2xl font-bold">$18,400</div>
+                        </div>
+                    </div>
+                    <div class="card p-6 mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Your Properties</h3><button
+                                class="btn-primary text-sm px-4 py-1.5" onclick="navigateTo('landlord-new-property')"><i
+                                    class="fa-regular fa-plus"></i> Add Property</button>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Location</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="font-medium">Luxury Downtown Apt</span></td>
+                                        <td>NYC</td>
+                                        <td>$2,400/mo</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Active</span></td>
+                                        <td>
+                                            <div class="flex gap-2"><button
+                                                    class="text-sm text-primary hover:underline">Edit</button><button
+                                                    class="text-sm text-red-500 hover:underline">Remove</button></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">Cozy Studio in Brooklyn</span></td>
+                                        <td>Brooklyn</td>
+                                        <td>$1,800/mo</td>
+                                        <td><span class="badge badge-pending"><span
+                                                    class="status-dot yellow"></span>Pending</span></td>
+                                        <td>
+                                            <div class="flex gap-2"><button
+                                                    class="text-sm text-primary hover:underline">Edit</button><button
+                                                    class="text-sm text-red-500 hover:underline">Remove</button></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">Modern 2BR in Soho</span></td>
+                                        <td>Soho</td>
+                                        <td>$3,200/mo</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Active</span></td>
+                                        <td>
+                                            <div class="flex gap-2"><button
+                                                    class="text-sm text-primary hover:underline">Edit</button><button
+                                                    class="text-sm text-red-500 hover:underline">Remove</button></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">Incoming Requests</h3><span class="text-sm text-text-muted">5
+                                new</span>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Tenant</th>
+                                        <th>Property</th>
+                                        <th>Dates</th>
+                                        <th>Status</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Jane D.</td>
+                                        <td>Luxury Downtown Apt</td>
+                                        <td>Aug 15 – Sep 15</td>
+                                        <td><span class="badge badge-pending"><span
+                                                    class="status-dot yellow"></span>Pending</span></td>
+                                        <td>
+                                            <div class="flex gap-2"><button class="btn-success text-xs px-3 py-1"
+                                                    onclick="showToast('success','Request Approved','Tenant can now proceed to payment.')"><i
+                                                        class="fa-regular fa-check"></i> Approve</button><button
+                                                    class="btn-danger text-xs px-3 py-1"
+                                                    onclick="showToast('error','Request Rejected','The tenant has been notified.')"><i
+                                                        class="fa-regular fa-xmark"></i> Reject</button></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Mike R.</td>
+                                        <td>Cozy Studio in Brooklyn</td>
+                                        <td>Sep 1 – Oct 1</td>
+                                        <td><span class="badge badge-pending"><span
+                                                    class="status-dot yellow"></span>Pending</span></td>
+                                        <td>
+                                            <div class="flex gap-2"><button class="btn-success text-xs px-3 py-1"
+                                                    onclick="showToast('success','Request Approved','Tenant can now proceed to payment.')"><i
+                                                        class="fa-regular fa-check"></i> Approve</button><button
+                                                    class="btn-danger text-xs px-3 py-1"
+                                                    onclick="showToast('error','Request Rejected','The tenant has been notified.')"><i
+                                                        class="fa-regular fa-xmark"></i> Reject</button></div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Sarah K.</td>
+                                        <td>Modern 2BR in Soho</td>
+                                        <td>Oct 5 – Nov 5</td>
+                                        <td><span class="badge badge-approved"><span
+                                                    class="status-dot blue"></span>Approved</span></td>
+                                        <td><span class="text-text-muted text-sm">Awaiting payment</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Admin -->
+                <div id="dash-admin" style="display:none;">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Total Users</div>
+                            <div class="text-2xl font-bold">1,284</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Properties</div>
+                            <div class="text-2xl font-bold">892</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Pending Requests</div>
+                            <div class="text-2xl font-bold text-yellow-600">47</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="text-sm text-text-muted">Total Revenue</div>
+                            <div class="text-2xl font-bold">$92.4k</div>
+                        </div>
+                    </div>
+                    <div class="card p-6 mb-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="font-bold text-lg">User Management</h3>
+                            <div class="flex gap-2"><input class="form-input w-48 text-sm"
+                                    placeholder="Search users..." /><button class="btn-primary text-sm px-4 py-1.5"><i
+                                        class="fa-regular fa-magnifying-glass"></i></button></div>
+                        </div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Role</th>
+                                        <th>Status</th>
+                                        <th>Joined</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="font-medium">alice@example.com</span></td>
+                                        <td>Tenant</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Active</span></td>
+                                        <td>Jan 2026</td>
+                                        <td><button class="btn-danger text-xs px-3 py-1"
+                                                onclick="showToast('warning','User Banned','alice@example.com has been banned.')"><i
+                                                    class="fa-regular fa-ban"></i> Ban</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">bob@landlord.com</span></td>
+                                        <td>Landlord</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Active</span></td>
+                                        <td>Mar 2026</td>
+                                        <td><button class="btn-danger text-xs px-3 py-1"
+                                                onclick="showToast('warning','User Banned','bob@landlord.com has been banned.')"><i
+                                                    class="fa-regular fa-ban"></i> Ban</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">carol@example.com</span></td>
+                                        <td>Tenant</td>
+                                        <td><span class="badge badge-rejected"><span
+                                                    class="status-dot red"></span>Banned</span></td>
+                                        <td>Jun 2026</td>
+                                        <td><button class="btn-success text-xs px-3 py-1"
+                                                onclick="showToast('success','User Unbanned','carol@example.com can now access the platform.')"><i
+                                                    class="fa-regular fa-check"></i> Unban</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="card p-6">
+                        <h3 class="font-bold text-lg mb-4">Content Moderation</h3>
+                        <div class="table-wrap">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Property</th>
+                                        <th>Listed By</th>
+                                        <th>Status</th>
+                                        <th>Reports</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="font-medium">Luxury Downtown Apt</span></td>
+                                        <td>bob@landlord.com</td>
+                                        <td><span class="badge badge-active"><span
+                                                    class="status-dot green"></span>Live</span></td>
+                                        <td>0</td>
+                                        <td><button class="text-sm text-red-500 hover:underline">Remove</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="font-medium">Suspicious Listing #42</span></td>
+                                        <td>unknown@user.com</td>
+                                        <td><span class="badge badge-pending"><span
+                                                    class="status-dot yellow"></span>Under Review</span></td>
+                                        <td>3</td>
+                                        <td>
+                                            <div class="flex gap-2"><button
+                                                    class="text-sm text-green-600 hover:underline">Approve</button><button
+                                                    class="text-sm text-red-500 hover:underline">Reject</button></div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PAYMENT INITIATION ─── -->
+        <section class="page-section" id="page-payment-init">
+            <div class="container-custom py-12 max-w-2xl mx-auto">
+                <button class="text-text-muted hover:text-text transition mb-6 flex items-center gap-2 text-sm"
+                    onclick="navigateTo('dashboard')"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</button>
+                <div class="card p-8">
+                    <h2 class="text-2xl font-bold mb-2">💳 Complete Payment</h2>
+                    <p class="text-text-muted text-sm mb-6">Secure payment for your rental request</p>
+                    <div class="bg-surface-alt rounded-xl p-4 mb-6">
+                        <div class="flex justify-between text-sm"><span>Property</span><span class="font-medium">Luxury
+                                Downtown Apartment</span></div>
+                        <div class="flex justify-between text-sm"><span>Rental Period</span><span>Aug 15 – Sep 15,
+                                2026</span></div>
+                        <div class="flex justify-between text-sm"><span>Total Amount</span><span
+                                class="font-bold text-primary text-lg">$2,400.00</span></div>
+                    </div>
+                    <div class="mb-6">
+                        <label class="form-label">Payment Method</label>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="payment-card selected"><i class="fa-brands fa-stripe text-2xl text-primary"></i>
+                                <div class="text-sm font-medium mt-1">Stripe</div>
+                            </div>
+                            <div class="payment-card"><i class="fa-regular fa-credit-card text-2xl"></i>
+                                <div class="text-sm font-medium mt-1">SSLCommerz</div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-primary w-full justify-center" onclick="simulatePayment()"><i
+                            class="fa-regular fa-lock"></i> Pay $2,400</button>
+                    <p class="text-center text-xs text-text-muted mt-4">🔒 Secured by Stripe · Test mode</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PAYMENT SUCCESS ─── -->
+        <section class="page-section" id="page-payment-success">
+            <div class="container-custom py-20 max-w-md mx-auto text-center">
+                <div class="card p-10">
+                    <div
+                        class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4 text-5xl">
+                        ✅</div>
+                    <h2 class="text-3xl font-bold text-green-600">Payment Successful!</h2>
+                    <p class="text-text-muted mt-2">Your rental has been confirmed. Check your dashboard for details.
+                    </p>
+                    <div class="flex gap-3 justify-center mt-6">
+                        <button class="btn-primary" onclick="navigateTo('dashboard')">Go to Dashboard</button>
+                        <button class="btn-secondary" onclick="navigateTo('home')">Home</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── PAYMENT CANCEL ─── -->
+        <section class="page-section" id="page-payment-cancel">
+            <div class="container-custom py-20 max-w-md mx-auto text-center">
+                <div class="card p-10">
+                    <div
+                        class="w-20 h-20 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4 text-5xl">
+                        ❌</div>
+                    <h2 class="text-3xl font-bold text-red-500">Payment Canceled</h2>
+                    <p class="text-text-muted mt-2">Your payment was not completed. You can try again or contact
+                        support.</p>
+                    <div class="flex gap-3 justify-center mt-6">
+                        <button class="btn-primary" onclick="navigateTo('payment-init')">Try Again</button>
+                        <button class="btn-secondary" onclick="navigateTo('home')">Home</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── LANDLORD: NEW PROPERTY ─── -->
+        <section class="page-section" id="page-landlord-new-property">
+            <div class="container-custom py-12 max-w-2xl mx-auto">
+                <button class="text-text-muted hover:text-text transition mb-6 flex items-center gap-2 text-sm"
+                    onclick="navigateTo('dashboard')"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</button>
+                <div class="card p-8">
+                    <h2 class="text-2xl font-bold mb-2">List a New Property</h2>
+                    <p class="text-text-muted text-sm mb-6">Fill in the details to get started</p>
+                    <div class="mb-4"><label class="form-label">Property Title</label><input class="form-input"
+                            placeholder="e.g. Modern 2BR in Soho" /></div>
+                    <div class="mb-4"><label class="form-label">Location</label><input class="form-input"
+                            placeholder="Address, city, state" /></div>
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div><label class="form-label">Price (per month)</label><input class="form-input" type="number"
+                                placeholder="2400" /></div>
+                        <div><label class="form-label">Property Type</label><select class="form-input">
+                                <option>Apartment</option>
+                                <option>House</option>
+                                <option>Condo</option>
+                                <option>Townhouse</option>
+                            </select></div>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4 mb-4">
+                        <div><label class="form-label">Beds</label><input class="form-input" type="number"
+                                placeholder="2" /></div>
+                        <div><label class="form-label">Baths</label><input class="form-input" type="number"
+                                placeholder="2" /></div>
+                        <div><label class="form-label">Sq ft</label><input class="form-input" type="number"
+                                placeholder="1200" /></div>
+                    </div>
+                    <div class="mb-4"><label class="form-label">Image URL</label><input class="form-input"
+                            placeholder="https://example.com/image.jpg" /></div>
+                    <div class="mb-4"><label class="form-label">Description</label><textarea class="form-input" rows="4"
+                            placeholder="Describe your property..."></textarea></div>
+                    <div class="mb-4"><label class="form-label">Amenities</label>
+                        <div class="flex flex-wrap gap-2"><span class="filter-chip active">Wi-Fi</span><span
+                                class="filter-chip">Parking</span><span class="filter-chip">Pool</span><span
+                                class="filter-chip">Gym</span><span class="filter-chip">Pet Friendly</span></div>
+                    </div>
+                    <div class="flex items-center gap-3 mb-6"><input type="checkbox" checked /><span
+                            class="text-sm">Available for rent</span></div>
+                    <button class="btn-primary w-full justify-center"
+                        onclick="showToast('success','Property Listed','Your property has been published successfully.')"><i
+                            class="fa-regular fa-plus"></i> List Property</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ─── LANDLORD: REQUESTS (dedicated) ─── -->
+        <section class="page-section" id="page-landlord-requests">
+            <div class="container-custom py-8 md:py-12">
+                <button class="text-text-muted hover:text-text transition mb-6 flex items-center gap-2 text-sm"
+                    onclick="navigateTo('dashboard')"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</button>
+                <div class="card p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="font-bold text-lg">All Incoming Requests</h3>
+                        <span class="text-sm text-text-muted">Total: 5</span>
+                    </div>
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Tenant</th>
+                                    <th>Property</th>
+                                    <th>Dates</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Jane D.</td>
+                                    <td>Luxury Downtown Apt</td>
+                                    <td>Aug 15 – Sep 15</td>
+                                    <td><span class="badge badge-pending"><span
+                                                class="status-dot yellow"></span>Pending</span></td>
+                                    <td>
+                                        <div class="flex gap-2"><button class="btn-success text-xs px-3 py-1"
+                                                onclick="showToast('success','Approved','Tenant can now pay.')"><i
+                                                    class="fa-regular fa-check"></i> Approve</button><button
+                                                class="btn-danger text-xs px-3 py-1"
+                                                onclick="showToast('error','Rejected','Tenant notified.')"><i
+                                                    class="fa-regular fa-xmark"></i> Reject</button></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mike R.</td>
+                                    <td>Cozy Studio in Brooklyn</td>
+                                    <td>Sep 1 – Oct 1</td>
+                                    <td><span class="badge badge-pending"><span
+                                                class="status-dot yellow"></span>Pending</span></td>
+                                    <td>
+                                        <div class="flex gap-2"><button class="btn-success text-xs px-3 py-1"
+                                                onclick="showToast('success','Approved','Tenant can now pay.')"><i
+                                                    class="fa-regular fa-check"></i> Approve</button><button
+                                                class="btn-danger text-xs px-3 py-1"
+                                                onclick="showToast('error','Rejected','Tenant notified.')"><i
+                                                    class="fa-regular fa-xmark"></i> Reject</button></div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Sarah K.</td>
+                                    <td>Modern 2BR in Soho</td>
+                                    <td>Oct 5 – Nov 5</td>
+                                    <td><span class="badge badge-approved"><span
+                                                class="status-dot blue"></span>Approved</span></td>
+                                    <td><span class="text-text-muted text-sm">Awaiting payment</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Alex P.</td>
+                                    <td>Penthouse with View</td>
+                                    <td>Nov 10 – Dec 10</td>
+                                    <td><span class="badge badge-rejected"><span
+                                                class="status-dot red"></span>Rejected</span></td>
+                                    <td><span class="text-text-muted text-sm">—</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Emily W.</td>
+                                    <td>Riverside 1BR Loft</td>
+                                    <td>Dec 1 – Jan 1</td>
+                                    <td><span class="badge badge-pending"><span
+                                                class="status-dot yellow"></span>Pending</span></td>
+                                    <td>
+                                        <div class="flex gap-2"><button class="btn-success text-xs px-3 py-1"
+                                                onclick="showToast('success','Approved','Tenant can now pay.')"><i
+                                                    class="fa-regular fa-check"></i> Approve</button><button
+                                                class="btn-danger text-xs px-3 py-1"
+                                                onclick="showToast('error','Rejected','Tenant notified.')"><i
+                                                    class="fa-regular fa-xmark"></i> Reject</button></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="bg-white border-t border-border mt-12">
+        <div class="container-custom py-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-2 text-lg font-bold"><span class="text-gradient">RentNest</span><span
+                        class="text-xs text-text-muted">© 2026</span></div>
+                <div class="flex gap-6 text-sm text-text-secondary"><a href="#"
+                        class="hover:text-primary transition">About</a><a href="#"
+                        class="hover:text-primary transition">Privacy</a><a href="#"
+                        class="hover:text-primary transition">Terms</a><a href="#"
+                        class="hover:text-primary transition">Contact</a></div>
+                <div class="flex gap-3 text-text-muted"><a href="#" class="hover:text-primary transition"><i
+                            class="fa-brands fa-twitter"></i></a><a href="#" class="hover:text-primary transition"><i
+                            class="fa-brands fa-github"></i></a><a href="#" class="hover:text-primary transition"><i
+                            class="fa-brands fa-linkedin"></i></a></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ════════════════════════════════════════════════════════════ -->
+    <!-- ═══ JAVASCRIPT ═══ -->
+    <script>
+        // ── Data ──
+        const properties = [{
+            id: 1,
+            title: 'Luxury Downtown Apartment',
+            location: 'New York, NY',
+            price: 2400,
+            beds: 2,
+            baths: 2,
+            sqft: 1200,
+            image: 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=400&h=260&fit=crop',
+            amenities: ['Wi-Fi', 'Parking', 'Pool', 'Gym']
+        }, {
+            id: 2,
+            title: 'Cozy Studio in Brooklyn',
+            location: 'Brooklyn, NY',
+            price: 1800,
+            beds: 1,
+            baths: 1,
+            sqft: 650,
+            image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=260&fit=crop',
+            amenities: ['Wi-Fi', 'Pet Friendly']
+        }, {
+            id: 3,
+            title: 'Modern 2BR in Soho',
+            location: 'Soho, NY',
+            price: 3200,
+            beds: 2,
+            baths: 2,
+            sqft: 1400,
+            image: 'https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=400&h=260&fit=crop',
+            amenities: ['Wi-Fi', 'Parking', 'Gym', 'Air Conditioning']
+        }, {
+            id: 4,
+            title: 'Penthouse with City View',
+            location: 'Manhattan, NY',
+            price: 4800,
+            beds: 3,
+            baths: 3,
+            sqft: 2100,
+            image: 'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=400&h=260&fit=crop',
+            amenities: ['Wi-Fi', 'Parking', 'Pool', 'Gym', 'Concierge']
+        }, {
+            id: 5,
+            title: 'Riverside 1BR Loft',
+            location: 'Queens, NY',
+            price: 1950,
+            beds: 1,
+            baths: 1,
+            sqft: 780,
+            image: 'https://images.unsplash.com/photo-1560185127-6ed189bf02f4?w=400&h=260&fit=crop',
+            amenities: ['Wi-Fi', 'Pet Friendly', 'Air Conditioning']
+        }, {
+            id: 6,
+            title: '3BR Family Home',
+            location: 'Staten Island, NY',
+            price: 3500,
+            beds: 3,
+            baths: 2,
+            sqft: 1800,
+            image: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=400&h=260&fit=crop',
+            amenities: ['Wi-Fi', 'Parking', 'Garden', 'Pet Friendly']
+        }];
+
+        // ── State ──
+        let currentRole = 'tenant';
+        let currentPage = 'home';
+        let currentDashTab = 'tenant';
+        let isLoggedIn = false;
+
+        // ── DOM refs ──
+        const $ = (s) => document.querySelector(s);
+        const $$ = (s) => document.querySelectorAll(s);
+
+        // ── Navigation ──
+        function navigateTo(page) {
+            currentPage = page;
+            $$('.page-section').forEach(el => el.classList.remove('active'));
+            const target = document.getElementById('page-' + page);
+            if (target) target.classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Close dropdown if open
+            document.getElementById('pagesMenu').classList.remove('open');
+            // If dashboard, sync tab
+            if (page === 'dashboard') {
+                switchDashboardTab(currentDashTab);
+            }
+        }
+
+        // ── Role Switching ──
+        function switchRole(role) {
+            currentRole = role;
+            $$('.role-btn').forEach(el => el.classList.toggle('active', el.dataset.role === role));
+            if (currentPage === 'dashboard') {
+                switchDashboardTab(role);
+            }
+            showToast('info', `Switched to ${role.charAt(0).toUpperCase() + role.slice(1)} view`, 'UI adapts to this role.');
+        }
+
+        // ── Dashboard Tabs ──
+        function switchDashboardTab(tab) {
+            currentDashTab = tab;
+            $$('.dashboard-tab').forEach(el => el.classList.toggle('active', el.dataset.dash === tab));
+            document.getElementById('dash-tenant').style.display = tab === 'tenant' ? 'block' : 'none';
+            document.getElementById('dash-landlord').style.display = tab === 'landlord' ? 'block' : 'none';
+            document.getElementById('dash-admin').style.display = tab === 'admin' ? 'block' : 'none';
+            const titles = {
+                tenant: ['Tenant Dashboard', 'Manage your rentals and requests'],
+                landlord: ['Landlord Dashboard', 'Manage your properties and requests'],
+                admin: ['Admin Dashboard', 'Oversee the entire platform']
+            };
+            document.getElementById('dashboardTitle').textContent = titles[tab][0];
+            document.getElementById('dashboardSubtitle').textContent = titles[tab][1];
+        }
+
+        // ── Render Cards ──
+        function renderProperties(containerId, data) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = data.map(p => `
+                    <div class="card group cursor-pointer" onclick="navigateTo('property-detail')">
+                        <div class="relative">
+                            <img src="${p.image}" alt="${p.title}" class="card-image" />
+                            <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-semibold shadow-sm">$${p.price}/mo</span>
+                        </div>
+                        <div class="p-5">
+                            <h3 class="font-bold text-lg leading-tight mb-1 group-hover:text-primary transition">${p.title}</h3>
+                            <p class="text-sm text-text-muted mb-2"><i class="fa-regular fa-location-dot"></i> ${p.location}</p>
+                            <div class="flex items-center gap-3 text-sm text-text-secondary">
+                                <span><i class="fa-regular fa-bed"></i> ${p.beds}</span>
+                                <span><i class="fa-regular fa-bath"></i> ${p.baths}</span>
+                                <span><i class="fa-regular fa-ruler"></i> ${p.sqft} sqft</span>
+                            </div>
+                            <div class="flex flex-wrap gap-1 mt-3">
+                                ${p.amenities.slice(0, 3).map(a => `<span class="text-xs bg-surface-alt px-2 py-0.5 rounded-full border border-border">${a}</span>`).join('')}
+                                ${p.amenities.length > 3 ? `<span class="text-xs text-text-muted">+${p.amenities.length - 3}</span>` : ''}
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+        }
+
+        // ── Auth Modal ──
+        function openAuthModal() { document.getElementById('authModal').classList.add('active'); }
+
+        function closeAuthModal() { document.getElementById('authModal').classList.remove('active'); }
+
+        function switchAuthTab(tab) {
+            const login = document.getElementById('authLoginForm');
+            const register = document.getElementById('authRegisterForm');
+            const tabLogin = document.getElementById('authTabLogin');
+            const tabReg = document.getElementById('authTabRegister');
+            if (tab === 'login') {
+                login.style.display = 'block';
+                register.style.display = 'none';
+                tabLogin.className = 'flex-1 py-2 rounded-lg font-medium text-sm bg-white shadow-sm';
+                tabReg.className = 'flex-1 py-2 rounded-lg font-medium text-sm text-text-muted';
+                document.getElementById('authModalTitle').textContent = 'Sign In';
+            } else {
+                login.style.display = 'none';
+                register.style.display = 'block';
+                tabReg.className = 'flex-1 py-2 rounded-lg font-medium text-sm bg-white shadow-sm';
+                tabLogin.className = 'flex-1 py-2 rounded-lg font-medium text-sm text-text-muted';
+                document.getElementById('authModalTitle').textContent = 'Create Account';
+            }
+        }
+
+        function handleAuth() {
+            isLoggedIn = true;
+            closeAuthModal();
+            showToast('success', 'Welcome to RentNest!', `You are signed in as a ${currentRole}.`);
+            const navBtn = document.querySelector('nav .btn-primary');
+            if (navBtn) {
+                navBtn.innerHTML = `<i class="fa-regular fa-user"></i> ${currentRole.charAt(0).toUpperCase() + currentRole.slice(1)}`;
+                navBtn.onclick = () => showToast('info', 'Logged in', `You are signed in as ${currentRole}.`);
+            }
+        }
+
+        // ── Toast ──
+        function showToast(type, title, message) {
+            const container = document.getElementById('toastContainer');
+            const icons = {
+                success: 'fa-regular fa-circle-check',
+                error: 'fa-regular fa-circle-xmark',
+                warning: 'fa-regular fa-triangle-exclamation',
+                info: 'fa-regular fa-circle-info'
+            };
+            const colors = {
+                success: 'toast-success',
+                error: 'toast-error',
+                warning: 'toast-warning',
+                info: 'toast-info'
+            };
+            const toast = document.createElement('div');
+            toast.className = `toast ${colors[type] || ''}`;
+            toast.innerHTML = `
+                    <span class="toast-icon ${icons[type] || icons.info}"></span>
+                    <div class="toast-content">
+                        <div class="toast-title">${title}</div>
+                        <div class="toast-message">${message}</div>
+                    </div>
+                    <button class="toast-close" onclick="this.closest('.toast').remove()">&times;</button>
+                `;
+            container.appendChild(toast);
+            setTimeout(() => { if (toast.parentNode) toast.remove(); }, 5000);
+        }
+
+        // ── Payment Demo (modal) ──
+        function openPaymentDemo() {
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[10001] flex items-center justify-center p-4';
+            overlay.id = 'paymentOverlay';
+            overlay.innerHTML = `
+                    <div class="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl animate-[modalIn_0.3s_cubic-bezier(0.22,1,0.36,1)]">
+                        <div class="text-center mb-6">
+                            <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-3 text-3xl">💳</div>
+                            <h3 class="text-xl font-bold">Payment Gateway</h3>
+                            <p class="text-text-muted text-sm">Simulated Stripe Checkout</p>
+                        </div>
+                        <div class="bg-surface-alt rounded-xl p-4 mb-4">
+                            <div class="flex justify-between text-sm"><span>Property</span><span class="font-medium">Luxury Downtown Apt</span></div>
+                            <div class="flex justify-between text-sm"><span>Amount</span><span class="font-bold text-primary">$2,400.00</span></div>
+                            <div class="flex justify-between text-sm"><span>Tenant</span><span>you@example.com</span></div>
+                        </div>
+                        <button class="btn-primary w-full justify-center" onclick="simulatePayment()"><i class="fa-regular fa-lock"></i> Pay $2,400</button>
+                        <button class="btn-secondary w-full justify-center mt-2 text-sm" onclick="document.getElementById('paymentOverlay').remove()">Cancel</button>
+                        <p class="text-center text-xs text-text-muted mt-4">🔒 Secured by Stripe · Test mode</p>
+                    </div>
+                `;
+            document.body.appendChild(overlay);
+        }
+
+        function simulatePayment() {
+            document.getElementById('paymentOverlay')?.remove();
+            showToast('success', 'Payment Successful! 🎉', 'Your rental has been confirmed.');
+            // Show success overlay
+            const overlay = document.createElement('div');
+            overlay.className = 'fixed inset-0 bg-black/50 backdrop-blur-sm z-[10001] flex items-center justify-center p-4';
+            overlay.innerHTML = `
+                    <div class="bg-white rounded-2xl max-w-md w-full p-8 text-center shadow-2xl animate-[modalIn_0.3s_cubic-bezier(0.22,1,0.36,1)]">
+                        <div class="w-20 h-20 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4 text-5xl">✅</div>
+                        <h3 class="text-2xl font-bold text-green-600">Payment Confirmed!</h3>
+                        <p class="text-text-muted mt-2">Your rental is now active. You can leave a review after your stay.</p>
+                        <button class="btn-primary mt-6" onclick="this.closest('.fixed').remove(); navigateTo('dashboard')">Go to Dashboard</button>
+                    </div>
+                `;
+            document.body.appendChild(overlay);
+            setTimeout(() => overlay?.remove(), 6000);
+        }
+
+        // ── Dropdown toggle ──
+        function toggleDropdown() {
+            document.getElementById('pagesMenu').classList.toggle('open');
+        }
+
+        // ── Close dropdown on outside click ──
+        document.addEventListener('click', function (e) {
+            const dropdown = document.getElementById('pagesDropdown');
+            if (dropdown && !dropdown.contains(e.target)) {
+                document.getElementById('pagesMenu').classList.remove('open');
+            }
+        });
+
+        // ── Close modal on overlay click ──
+        document.getElementById('authModal')?.addEventListener('click', function (e) {
+            if (e.target === this) closeAuthModal();
+        });
+
+        // ── Close payment overlay on outside click ──
+        document.addEventListener('click', function (e) {
+            if (e.target.id === 'paymentOverlay') e.target.remove();
+        });
+
+        // ── Keyboard shortcuts ──
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                document.getElementById('authModal')?.classList.remove('active');
+                document.getElementById('paymentOverlay')?.remove();
+                document.getElementById('pagesMenu').classList.remove('open');
+            }
+        });
+
+        // ── Init ──
+        renderProperties('propertyGrid', properties.slice(0, 3));
+        renderProperties('propertyGridAll', properties);
+
+        // Show welcome toast
+        setTimeout(() => {
+            showToast('info', '👋 Welcome to RentNest', 'Browse all pages using the "Pages" dropdown.');
+        }, 600);
+
+        // ── Expose globals ──
+        window.navigateTo = navigateTo;
+        window.switchRole = switchRole;
+        window.switchDashboardTab = switchDashboardTab;
+        window.openAuthModal = openAuthModal;
+        window.closeAuthModal = closeAuthModal;
+        window.switchAuthTab = switchAuthTab;
+        window.handleAuth = handleAuth;
+        window.showToast = showToast;
+        window.openPaymentDemo = openPaymentDemo;
+        window.simulatePayment = simulatePayment;
+        window.toggleDropdown = toggleDropdown;
+        window.renderProperties = renderProperties;
+    </script>
+</body>
+
+</html>
