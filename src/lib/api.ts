@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
 export const API_BASE_URL =
-  process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000/api';
+  process.env.NEXT_PUBLIC_API_URL || 'https://b7-a4-level-2.vercel.app/';
 
 export interface ApiResponse<T = unknown> {
   statusCode: number;
